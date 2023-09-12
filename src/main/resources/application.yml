@@ -4,7 +4,3 @@ spring:
     username: ${db.username}
     password: ${db.password}
     driver-class-name: org.postgresql.Driver
-
-logging:
-level:
-ROOT: info

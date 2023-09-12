@@ -24,8 +24,6 @@ public class Test {
     @Column(name = "test_contents")
     private String testContents;
 
-    private String icon;
-
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
