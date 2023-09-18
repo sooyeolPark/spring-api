@@ -1,6 +1,7 @@
 FROM amazoncorretto:17.0.6-alpine
 LABEL authors="Park"
 
+VOLUME /tmp
 ARG JAR_FILE=build/libs/spring-api-0.0.1-SNAPSHOT.jar
 
 ADD ${JAR_FILE} spring-api.jar
