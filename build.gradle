@@ -51,5 +51,9 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 jar {
-	destinationDir new File("./jarPath")
+	//이 설정을 하지 않으면 plain파일이 만들어지는데 plain파일은 종속파일을 뺀 순수 코드만 있는 파일
+	enabled = false
+}
+bootJar {
+	destinationDirectory = file("./jar-path")
 }
