@@ -50,3 +50,6 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+jar {
+	destinationDir new File("./jarPath")
+}
