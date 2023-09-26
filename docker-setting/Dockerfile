@@ -1,6 +1,9 @@
 FROM amazoncorretto:17.0.6-alpine
 LABEL authors="Park"
 
+##inotify 설치
+RUN apk add --update inotify-tools
+
 WORKDIR /home/spring-api
 RUN chmod -R 755 /home/spring-api
 # 실행 명령
