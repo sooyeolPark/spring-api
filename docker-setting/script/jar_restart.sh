@@ -10,8 +10,10 @@ echo "Running PID: {$CURRENT_PID}"
 if [ -z $CURRENT_PID ] ; then
     echo "Project is not running"
 else
-    kill $CURRENT_PID
+    kill $CURRENT_PID &
 fi
+
+wait
 
 echo "Deploy Project...."
 

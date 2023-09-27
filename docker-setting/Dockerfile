@@ -2,13 +2,12 @@ FROM amazoncorretto:17.0.6-alpine
 LABEL authors="Park"
 
 ##inotify 설치
-RUN apk add --update inotify-tools
 
-COPY ./inotify/jar_inotifywait.sh /home/spring-api/script/jar_inotifywait.sh
+COPY ./script/jar_monitoring.sh /home/spring-api/script/jar_monitoring.sh
 COPY ./script/jar_restart.sh /home/spring-api/script/jar_restart.sh
 COPY ./script/init.sh /home/spring-api/script/init.sh
 
-RUN chmod -R 755 /home/spring-api/script/jar_inotifywait.sh
+RUN chmod -R 755 /home/spring-api/script/jar_monitoring.sh
 RUN chmod -R 755 /home/spring-api/script/jar_restart.sh
 RUN chmod -R 755 /home/spring-api/script/init.sh
 

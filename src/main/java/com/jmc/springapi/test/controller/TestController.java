@@ -15,15 +15,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TestController {
     private final TestService testService;
-//    @GetMapping("/test")
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<TestDto.TestResponse> getTests() {
-//        return testService.getTests();
-//    }
-
     @GetMapping("/test")
     @ResponseStatus(HttpStatus.OK)
-    public String getTests() {
-        return "hi";
+    public List<TestDto.TestResponse> getTests() {
+        return testService.getTests();
     }
+
+//    @GetMapping("/test")
+//    @ResponseStatus(HttpStatus.OK)
+//    public String getTests() {
+//        return "hi";
+//    }
 }
