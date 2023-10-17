@@ -56,5 +56,5 @@ jar {
 	enabled = false
 }
 bootJar {
-	destinationDirectory = file("./docker-setting/jar-path")
+	destinationDirectory = file("../docker-setting/jar-path")
 }
