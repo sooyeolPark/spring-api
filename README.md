@@ -18,3 +18,12 @@
 7. 프로젝트 빌드할 때 java project 기준 ../docker-setting/jar-build에 jar파일이 생성되게 설정한다.
    1. IntelliJ 기준
       실행/디버그 구성 -> 새구성 추가 -> Gradle 선택 -> 실행 셀렉트박스에서 Build 선택 후 적용 
+
+
+***
+레디스 관련 설정
+1. 객체를 레디스에 등록하기 위한 serialize 방법 과정 정리 할것
+
+2. 객체 중 date 자료형을 serialize, deserialize 하기 위한 방법 과정 정리
+
+3. Redis config 조사 및 정리할것
