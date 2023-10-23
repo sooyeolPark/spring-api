@@ -22,8 +22,35 @@
 
 ***
 레디스 관련 설정
-1. 객체를 레디스에 등록하기 위한 serialize 방법 과정 정리 할것
+1. redis 적용
+   1. build.gradle에 implementation 'org.springframework.boot:spring-boot-starter-data-redis' 추가
+   2. application.yml에 레디스 관련 설정 추가 (data.redis.host & data.redis.port)
+   3. redisConfig파일 등록
+   4. @SpringBootApplication 어노테이션이 있는 메인메서드에서 @EnableCaching 어노테이션 추가
+   5. redis 캐시를 사용할 endpoint에서 @Cacheable어노테이션 사용  
+
 
 2. 객체 중 date 자료형을 serialize, deserialize 하기 위한 방법 과정 정리
+   1. object를 레디스에 캐시하려고 하니 에러 발생
+   
+   ```
+   Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.data.redis.serializer.SerializationException: Cannot serialize; nested exception is org.springframework.core.serializer.support.SerializationFailedException: Failed to serialize object using DefaultSerializer; nested exception is java.lang.IllegalArgumentException: DefaultSerializer requires a Serializable payload but received an object of type [] with root cause```
+    ```
+   2.  Redisconfig의 cacheManager에 객체 직렬화 메서드를 추가
+      ```
+   .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()))
+   2. ```
+      
+   3. 객체를 직렬화 하는데는 성공했지만 date 형태의 데이터는 다음과 같은 오류 발생
+      ```
+      com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Java 8 date/time type `java.time.LocalDateTime` not supported by default: add Module "com.fasterxml.jackson.datatype:jackson-datatype-jsr310" to enable handling
+      ```
+      2. 다음 라이브러리 추가
+         - implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+         - implementation 'com.fasterxml.jackson.core:jackson-databind'
+      3. 해당 멤버변수 위에 다음과 같은 어노테이션 추가
+         - @JsonSerialize(using = LocalDateTimeSerializer.class)
+         - @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+
 
 3. Redis config 조사 및 정리할것
