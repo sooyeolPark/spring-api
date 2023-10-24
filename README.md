@@ -53,4 +53,16 @@
          - @JsonDeserialize(using = LocalDateTimeDeserializer.class)
 
 
-3. Redis config 조사 및 정리할것
+3. Spring의 @Cachealbe/@CacheEvict AOP 조사
+   1. @Cacheable로 해당 Request를 cache할 수 있다.
+   2. key를 지정안해도 되지만 cache flush를 위하여 key를 지정하는 것이 좋다.
+   3. key는 보통 파라미터로 하지만 key가 딱히 지정하기 힘든 경우는
+      1. @CacheEvict에 allEntries = true를 준다. 이 경우 모든 캐시가 사라진다.
+      2. key는 정적문자를 지원하지 않는다. 그러므로 임의의 문자를 쓰면 에러가 나는데 이를 해당 클래스의 멤버변수나 Method이름으로 해결할 수 있다.
+         1. key="#root.methodName" or key = "#root.target.CUSTOM_VAR"
+   4. @CacheEvict에 대해서는 실무적으로 더 조사할 필요가 있을듯하다
+      1. @TODO 단건이 바뀌었을때 리스트의 캐시를 날리는 것
+      2. @TODO 단건이 바뀌었을때 특정 그룹의 캐시를 날리는 것
+      
+
+4. redis config 조사

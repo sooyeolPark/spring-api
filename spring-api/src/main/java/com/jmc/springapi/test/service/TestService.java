@@ -3,6 +3,7 @@ package com.jmc.springapi.test.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.jmc.springapi.test.domain.Test;
 import com.jmc.springapi.test.dto.TestDto;
 import com.jmc.springapi.test.repository.TestRepository;
 import org.springframework.data.domain.Page;
@@ -26,5 +27,11 @@ public class TestService {
                 .map(TestDto.TestResponse::of)
                 .collect(Collectors.toList());
         return res;
+    }
+
+    public TestDto.TestResponse getTest(Long id) {
+        Test res = testRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 유저가 없습니다."));
+        return TestDto.TestResponse.of(res);
     }
 }
