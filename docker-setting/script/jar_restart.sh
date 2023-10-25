@@ -13,7 +13,9 @@ else
     kill $CURRENT_PID &
 fi
 
-wait
+PROCESS_ID=$!
+
+wait $PROCESS_ID
 
 echo "Deploy Project...."
 
